@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>员工20人以上的老板：为什么你的KPI推不动？｜薪酬与绩效研修班</title>
+<meta name="description" content="专为员工20人以上的工厂、连锁店、批发商、零售业设计的薪酬与绩效研修班。2小时带走一套绩效框架 + 你公司的绩效诊断结果。08/09/2026 8PM Zoom 直播。">
+<style>
+  :root{
+    --navy:#0F2A44;
+    --navy-deep:#091B2E;
+    --gold:#C9A24C;
+    --gold-soft:#F3E8C8;
+    --ink:#1C1F24;
+    --grey:#5B6270;
+    --line:#E3E6EB;
+    --paper:#FFFFFF;
+    --paper-tint:#F4F5F7;
+    --red:#B8322A;
+    --green:#1F7A4D;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",-apple-system,sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.7;font-size:17px;
+    padding-bottom:84px;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  button{font-family:inherit}
+
+  .wrap{width:100%;max-width:960px;margin:0 auto;padding:0 20px}
+  .narrow{max-width:640px}
+  section{padding:56px 0}
+  @media(min-width:768px){section{padding:80px 0}}
+
+  h1,h2,h3{line-height:1.25;letter-spacing:-.01em}
+  h1{font-size:30px;font-weight:800}
+  h2{font-size:26px;font-weight:800;margin-bottom:12px}
+  h3{font-size:19px;font-weight:700}
+  @media(min-width:768px){h1{font-size:46px}h2{font-size:36px}h3{font-size:21px}}
+  .lead{font-size:18px;color:var(--grey);max-width:640px}
+  @media(min-width:768px){.lead{font-size:20px}}
+  .center{text-align:center}
+  .center .lead{margin:0 auto}
+
+  /* buttons */
+  .btn{
+    display:inline-block;background:var(--gold);color:var(--navy-deep);
+    font-weight:800;font-size:18px;padding:16px 28px;border-radius:8px;
+    border:0;cursor:pointer;text-decoration:none;text-align:center;
+  }
+  .btn:hover{background:#D9B35E}
+  .btn:focus-visible,.q-btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .btn-block{display:block;width:100%}
+  .btn-note{font-size:14px;color:var(--grey);margin-top:10px}
+
+  /* hero */
+  .hero{background:var(--navy);color:#fff;padding:36px 0 48px}
+  @media(min-width:768px){.hero{padding:72px 0}}
+  .hero .tag{
+    display:inline-block;border:1px solid rgba(255,255,255,.35);border-radius:999px;
+    padding:6px 14px;font-size:14px;margin-bottom:20px;color:#fff
+  }
+  .hero h1{margin-bottom:16px}
+  .hero .lead{color:rgba(255,255,255,.82)}
+  .hero-grid{display:grid;gap:28px}
+  @media(min-width:900px){.hero-grid{grid-template-columns:1.15fr 1fr;align-items:center;gap:48px}}
+  .hero-img{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.12)}
+  .session{
+    margin:24px 0;padding:18px 20px;border-left:4px solid var(--gold);
+    background:rgba(255,255,255,.06);border-radius:0 8px 8px 0
+  }
+  .session b{display:block;font-size:20px}
+  .session span{color:rgba(255,255,255,.75);font-size:15px}
+  .hero-cta{margin-top:8px}
+
+  /* who it's for */
+  .fit-grid{display:grid;gap:16px;margin-top:24px}
+  @media(min-width:768px){.fit-grid{grid-template-columns:1fr 1fr}}
+  .fit{border:1px solid var(--line);border-radius:12px;padding:22px}
+  .fit.yes{border-top:5px solid var(--green)}
+  .fit.no{border-top:5px solid var(--grey)}
+  .fit h3{margin-bottom:10px}
+  .fit ul{list-style:none}
+  .fit li{padding:6px 0 6px 28px;position:relative}
+  .fit.yes li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+  .fit.no li::before{content:"–";position:absolute;left:4px;color:var(--grey);font-weight:800}
+
+  /* pain */
+  .pain{background:var(--paper-tint)}
+  .pain-list{margin-top:28px;display:grid;gap:12px}
+  .pain-item{
+    background:#fff;border-radius:12px;padding:20px 22px;display:grid;
+    grid-template-columns:auto 1fr;gap:16px;align-items:start
+  }
+  .pain-item .num{
+    font-size:30px;font-weight:800;color:var(--red);line-height:1;min-width:64px
+  }
+  .pain-item .num small{display:block;font-size:12px;color:var(--grey);font-weight:500;margin-top:4px}
+  .pain-item p{color:var(--grey);font-size:16px;margin-top:4px}
+  .pain-close{
+    margin-top:28px;padding:22px;border-radius:12px;background:var(--navy);color:#fff;font-size:18px
+  }
+  .pain-close b{color:var(--gold)}
+
+  /* outcomes */
+  .take{display:grid;gap:14px;margin-top:24px}
+  @media(min-width:768px){.take{grid-template-columns:repeat(3,1fr)}}
+  .take-item{background:var(--gold-soft);border-radius:12px;padding:22px}
+  .take-item .k{font-size:14px;color:var(--grey);margin-bottom:6px}
+  .take-item h3{margin-bottom:8px}
+  .take-item p{font-size:16px;color:#3D434D}
+
+  /* framework */
+  .frame{background:var(--navy-deep);color:#fff}
+  .frame .lead{color:rgba(255,255,255,.75)}
+  .chain{display:grid;gap:10px;margin-top:32px}
+  @media(min-width:768px){.chain{grid-template-columns:repeat(6,1fr);gap:8px}}
+  .step{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:10px;padding:18px 16px;position:relative
+  }
+  .step .n{color:var(--gold);font-weight:800;font-size:14px;margin-bottom:6px}
+  .step h3{font-size:19px;margin-bottom:6px}
+  .step p{font-size:14px;color:rgba(255,255,255,.72)}
+  .step::after{
+    content:"↓";position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);
+    color:var(--gold);font-size:18px;font-weight:800
+  }
+  .step:last-child::after{content:""}
+  @media(min-width:768px){
+    .step::after{content:"→";left:auto;right:-14px;top:50%;bottom:auto;transform:translateY(-50%)}
+  }
+  .frame-note{margin-top:36px;padding:20px;border-left:4px solid var(--gold);color:rgba(255,255,255,.85);font-size:16px}
+
+  /* diagnosis */
+  .diag{background:var(--gold-soft)}
+  .diag-box{background:#fff;border-radius:16px;padding:24px;margin-top:24px;border:1px solid #E6D9B3}
+  @media(min-width:768px){.diag-box{padding:36px}}
+  .q{padding:18px 0;border-bottom:1px solid var(--line);display:grid;gap:12px}
+  .q:last-of-type{border-bottom:0}
+  @media(min-width:640px){.q{grid-template-columns:1fr auto;align-items:center}}
+  .q p{font-weight:600}
+  .q-opts{display:flex;gap:8px}
+  .q-btn{
+    border:2px solid var(--line);background:#fff;border-radius:8px;padding:10px 20px;
+    font-size:16px;font-weight:700;cursor:pointer;color:var(--ink);min-width:72px
+  }
+  .q-btn.on-yes{border-color:var(--green);background:#E4F3EA;color:var(--green)}
+  .q-btn.on-no{border-color:var(--red);background:#FBE9E7;color:var(--red)}
+  .diag-result{display:none;margin-top:24px;border-radius:12px;padding:24px;background:var(--navy);color:#fff}
+  .diag-result.show{display:block}
+  .diag-result .score{font-size:48px;font-weight:800;line-height:1;color:var(--gold)}
+  .diag-result .score small{font-size:18px;color:rgba(255,255,255,.7);font-weight:500}
+  .diag-result h3{margin:12px 0 8px}
+  .diag-result p{color:rgba(255,255,255,.85);margin-bottom:18px}
+  .progress{font-size:14px;color:var(--grey);margin-top:12px}
+
+  /* cases */
+  .cases{display:grid;gap:16px;margin-top:24px}
+  @media(min-width:768px){.cases{grid-template-columns:1fr 1fr}}
+  .case{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .case img{aspect-ratio:16/9;object-fit:cover;width:100%}
+  .case-body{padding:20px 22px}
+  .case-body .ind{font-size:14px;color:var(--grey);margin-bottom:6px}
+  .case-body h3{margin-bottom:10px}
+  .case-body .ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:15px;margin-top:12px}
+  .case-body .ba div{background:var(--paper-tint);border-radius:8px;padding:12px}
+  .case-body .ba b{display:block;font-size:13px;color:var(--grey);font-weight:500;margin-bottom:4px}
+  .case-body .ba .after{background:#E4F3EA}
+  .case-body .ba .after strong{color:var(--green)}
+
+  /* trainer */
+  .trainer{background:var(--paper-tint)}
+  .trainer-grid{display:grid;gap:24px;margin-top:24px}
+  @media(min-width:768px){.trainer-grid{grid-template-columns:320px 1fr;align-items:start}}
+  .trainer-photo{border-radius:12px;overflow:hidden}
+  .trainer-photo img{aspect-ratio:4/5;object-fit:cover;width:100%}
+  .cred{list-style:none;margin-top:16px}
+  .cred li{padding:10px 0 10px 30px;position:relative;border-bottom:1px solid var(--line)}
+  .cred li::before{content:"";position:absolute;left:0;top:19px;width:14px;height:14px;background:var(--gold);border-radius:3px}
+  .brand-row{display:grid;gap:16px;margin-top:28px}
+  @media(min-width:768px){.brand-row{grid-template-columns:1fr 1fr 1fr}}
+  .brand{background:#fff;border-radius:12px;padding:22px;border:1px solid var(--line)}
+  .brand .big{font-size:32px;font-weight:800;color:var(--navy);line-height:1.1}
+  .brand .big small{font-size:14px;color:var(--grey);font-weight:500;display:block;margin-top:6px}
+
+  /* faq */
+  details{border-bottom:1px solid var(--line);padding:6px 0}
+  summary{cursor:pointer;font-weight:700;padding:14px 32px 14px 0;position:relative;list-style:none;font-size:17px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:24px;color:var(--gold);font-weight:800}
+  details[open] summary::after{content:"–"}
+  details p{padding:0 0 16px;color:var(--grey)}
+
+  /* form */
+  .signup{background:var(--navy);color:#fff}
+  .signup .lead{color:rgba(255,255,255,.78)}
+  form{background:#fff;color:var(--ink);border-radius:16px;padding:24px;margin-top:24px}
+  @media(min-width:768px){form{padding:36px}}
+  .f{margin-bottom:16px}
+  .f label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+  .f label span{color:var(--red)}
+  .f input,.f select{
+    width:100%;border:2px solid var(--line);border-radius:8px;padding:13px 14px;font-size:16px;
+    font-family:inherit;background:#fff;color:var(--ink)
+  }
+  .f input:focus,.f select:focus{border-color:var(--navy)}
+  .chk{display:grid;gap:8px}
+  .chk label{
+    display:flex;gap:10px;align-items:flex-start;font-weight:500;padding:12px;
+    border:2px solid var(--line);border-radius:8px;cursor:pointer;font-size:15px
+  }
+  .chk input{width:18px;height:18px;margin-top:3px;flex:none}
+  .f-two{display:grid;gap:16px}
+  @media(min-width:640px){.f-two{grid-template-columns:1fr 1fr}}
+  .form-foot{font-size:14px;color:var(--grey);margin-top:14px;text-align:center}
+  .gate{display:none;background:#FBE9E7;border:1px solid #F1C4BF;color:var(--red);border-radius:8px;padding:14px;font-size:15px;margin-bottom:16px}
+  .gate.show{display:block}
+
+
+  /* calculator */
+  .calc{background:var(--paper-tint);border-radius:16px;padding:24px;margin-top:24px}
+  @media(min-width:768px){.calc{padding:32px}}
+  .calc-out{background:#fff;border-radius:12px;padding:6px 20px;margin:8px 0 16px}
+  .calc-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .calc-row:last-child{border-bottom:0}
+  .calc-row span{color:var(--grey);font-size:15px}
+  .calc-row b{font-size:22px;font-weight:800;white-space:nowrap}
+  .calc-note{font-size:15px;color:var(--grey);margin-bottom:18px}
+
+  /* compare table */
+  .cmp{width:100%;border-collapse:collapse;margin-top:24px;background:#fff;border-radius:12px;overflow:hidden;font-size:15px}
+  .cmp th{padding:14px 16px;text-align:left;font-size:16px}
+  .cmp th:first-child{background:#E9EBEF;color:var(--grey)}
+  .cmp th:last-child{background:var(--navy);color:#fff}
+  .cmp td{padding:13px 16px;border-top:1px solid var(--line);vertical-align:top;width:50%}
+  .cmp td:first-child{color:var(--grey)}
+  .cmp td:last-child{font-weight:600;background:#F7FBF8}
+
+  /* agenda */
+  .agenda{margin-top:24px}
+  .ag{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .ag:last-child{border-bottom:0}
+  .ag .t{font-weight:800;color:var(--navy);font-size:15px;padding-top:3px}
+  .ag h3{font-size:18px;margin-bottom:4px}
+  .ag p{color:var(--grey);font-size:15px}
+
+  /* testimonials */
+  .testi{display:grid;gap:14px;margin-top:16px}
+  @media(min-width:768px){.testi{grid-template-columns:repeat(3,1fr)}}
+  .wa{background:#E7F6E4;border-radius:12px 12px 12px 2px;padding:16px 18px;font-size:15px}
+  .wa-b{margin-bottom:10px}
+  .wa-n{font-size:13px;color:var(--grey)}
+
+  /* flow */
+  .flow{margin-top:24px;display:grid;gap:14px}
+  .fl{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start}
+  .fn{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--navy-deep);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
+  .fl h3{font-size:18px;margin-bottom:4px}
+  .fl p{color:rgba(255,255,255,.75);font-size:15px}
+
+  /* seats */
+  .seats{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:18px 20px;margin-top:24px}
+  .seats-row{display:flex;justify-content:space-between;align-items:center;font-size:15px;margin-bottom:10px}
+  .seats-row b{color:var(--gold)}
+  .bar{height:10px;background:rgba(255,255,255,.15);border-radius:999px;overflow:hidden}
+  .bar-in{height:100%;background:var(--gold);width:0}
+  .seats p{font-size:14px;color:rgba(255,255,255,.7);margin-top:10px}
+
+  footer{padding:32px 0;font-size:13px;color:var(--grey);text-align:center}
+
+  /* sticky bar */
+  .sticky{
+    position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);
+    padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;
+    box-shadow:0 -6px 20px rgba(9,27,46,.08);z-index:50
+  }
+  .sticky .s-txt{font-size:14px;line-height:1.3}
+  .sticky .s-txt b{display:block;font-size:15px}
+  .sticky .btn{padding:12px 20px;font-size:16px;white-space:nowrap}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">品誉中国 No.1 绩效考核体系 · 马来西亚站</span>
+      <h1>员工越多，你越累？<br>不是员工问题，是你的绩效系统没有"发动机"。</h1>
+      <p class="lead">工厂、连锁店、批发商、零售业老板：2小时带走一套薪酬与绩效落地框架，加上你公司的绩效诊断结果，回去就能改。</p>
+
+      <div class="session">
+        <b>08/09/2026（星期二）晚上 8PM – 10PM</b>
+        <span>Zoom 线上直播 · 限时免费 · 每场限 100 家企业</span>
+      </div>
+
+      <div class="hero-cta">
+        <a class="btn btn-block" href="#signup">预留我的席位（免费）</a>
+        <p class="btn-note">报名后顾问会 WhatsApp 确认。只开放给公司决策者。</p>
+      </div>
+    </div>
+    <div class="hero-img">
+      <!-- 可换成课程主视觉 -->
+      <img src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/UoOiBPBgJjIezP5UI3Ni/media/691eb63c9389312358a9a2d1.jpg" alt="薪酬与绩效研修班">
+    </div>
+  </div>
+</header>
+
+<!-- ============ PROOF STRIP ============ -->
+<div style="background:var(--gold-soft);padding:18px 0;border-bottom:1px solid #E6D9B3">
+  <div class="wrap" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center">
+    <div><div style="font-size:26px;font-weight:800;color:var(--navy);line-height:1.1">No.1</div><div style="font-size:13px;color:var(--grey)">中国绩效考核体系</div></div>
+    <div><div style="font-size:26px;font-weight:800;color:var(--navy);line-height:1.1">5000+</div><div style="font-size:13px;color:var(--grey)">马来西亚企业上过课</div></div>
+    <div><div style="font-size:26px;font-weight:800;color:var(--navy);line-height:1.1">2 年</div><div style="font-size:13px;color:var(--grey)">进驻马来西亚</div></div>
+  </div>
+</div>
+
+<!-- ============ WHO IT'S FOR ============ -->
+<section>
+  <div class="wrap">
+    <h2>这堂课不是给每个人的</h2>
+    <p class="lead">我们只邀请真正管着一个团队、而且是自己在做决定的老板。</p>
+    <div class="fit-grid">
+      <div class="fit yes">
+        <h3>适合你，如果你是：</h3>
+        <ul>
+          <li>员工 20 人以上的工厂、制造商、批发商</li>
+          <li>有 2 间店以上的连锁店、零售业、餐饮</li>
+          <li>老板或决策者本人，能拍板改制度</li>
+          <li>已经有 KPI 或考核，但推不动、员工不买账</li>
+          <li>想让中层背指标，自己退出日常救火</li>
+        </ul>
+      </div>
+      <div class="fit no">
+        <h3>暂时不适合，如果你是：</h3>
+        <ul>
+          <li>10 人以下、老板一个人就能盯完全公司</li>
+          <li>只想听概念、暂时没打算改薪酬制度</li>
+          <li>没有决策权的员工（可请老板一起来）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY / PAIN ============ -->
+<section class="pain">
+  <div class="wrap">
+    <h2>为什么员工一过 20 人，管理就开始失控？</h2>
+    <p class="lead">10 人以下靠老板盯，20 人以上靠系统跑。没有系统的公司，钱是这样漏掉的：</p>
+
+    <div class="pain-list">
+      <div class="pain-item">
+        <div class="num">1 个<small>老板</small></div>
+        <div>
+          <h3>盯不住 20 个人，中层不背指标</h3>
+          <p>主管只是"传话筒"，目标从老板嘴里说出去，到一线就散了。结果永远是老板自己下场救火。</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="num">0%<small>浮动</small></div>
+        <div>
+          <h3>薪水和产出脱钩，做多做少一样钱</h3>
+          <p>固定薪加个年终花红，好员工觉得不公平，差员工觉得刚刚好。加薪留不住人，不加薪没积极性。</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="num">3 缺<small>标准·追踪·奖惩</small></div>
+        <div>
+          <h3>有 KPI 没结果，制度变成"贴在墙上"</h3>
+          <p>设了 KPI 却没有岗位标准、没有每周追踪、没有兑现的奖惩，员工很快学会：KPI 只是老板的心情。</p>
+        </div>
+      </div>
+      <div class="pain-item">
+        <div class="num">×2<small>内耗</small></div>
+        <div>
+          <h3>每多 10 个员工，沟通成本和内耗翻倍</h3>
+          <p>部门互相推责、老员工带坏新员工、离职一个要重新培训三个月。这些成本不在报表上，但每个月都在付。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pain-close">
+      你现在的公司规模，已经到了<b>"靠人管"</b>和<b>"靠系统管"</b>的分界线。这堂课就是帮你跨过去。
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIAGNOSIS ============ -->
+<section class="diag" id="diag">
+  <div class="wrap narrow">
+    <h2 class="center">30 秒企业绩效诊断</h2>
+    <p class="lead center">10 题，答"是"或"否"。看看你的公司现在漏在哪一步。</p>
+
+    <div class="diag-box" id="diagBox">
+      <div class="q"><p>1. 每个岗位都有写下来的目标数字，不是只在老板脑袋里？</p><div class="q-opts"><button class="q-btn" data-q="0" data-v="1">是</button><button class="q-btn" data-q="0" data-v="0">否</button></div></div>
+      <div class="q"><p>2. 主管清楚自己部门这个月要交出什么结果？</p><div class="q-opts"><button class="q-btn" data-q="1" data-v="1">是</button><button class="q-btn" data-q="1" data-v="0">否</button></div></div>
+      <div class="q"><p>3. 每个岗位都有"做到什么程度算合格"的标准？</p><div class="q-opts"><button class="q-btn" data-q="2" data-v="1">是</button><button class="q-btn" data-q="2" data-v="0">否</button></div></div>
+      <div class="q"><p>4. 公司有固定的每周或每月绩效检讨会议？</p><div class="q-opts"><button class="q-btn" data-q="3" data-v="1">是</button><button class="q-btn" data-q="3" data-v="0">否</button></div></div>
+      <div class="q"><p>5. 员工薪水里有跟结果挂钩的浮动部分（不只是年终花红）？</p><div class="q-opts"><button class="q-btn" data-q="4" data-v="1">是</button><button class="q-btn" data-q="4" data-v="0">否</button></div></div>
+      <div class="q"><p>6. 表现好的员工，这个月就能看到和表现差的员工不一样的收入？</p><div class="q-opts"><button class="q-btn" data-q="5" data-v="1">是</button><button class="q-btn" data-q="5" data-v="0">否</button></div></div>
+      <div class="q"><p>7. 奖惩制度是写下来、公开的，不是老板临时决定？</p><div class="q-opts"><button class="q-btn" data-q="6" data-v="1">是</button><button class="q-btn" data-q="6" data-v="0">否</button></div></div>
+      <div class="q"><p>8. 中层主管有自己的考核，不是只有一线员工被考核？</p><div class="q-opts"><button class="q-btn" data-q="7" data-v="1">是</button><button class="q-btn" data-q="7" data-v="0">否</button></div></div>
+      <div class="q"><p>9. 老板一个星期不在公司，业务照常运作？</p><div class="q-opts"><button class="q-btn" data-q="8" data-v="1">是</button><button class="q-btn" data-q="8" data-v="0">否</button></div></div>
+      <div class="q"><p>10. 过去 12 个月，公司有正式检讨并调整过绩效或薪酬制度？</p><div class="q-opts"><button class="q-btn" data-q="9" data-v="1">是</button><button class="q-btn" data-q="9" data-v="0">否</button></div></div>
+
+      <p class="progress" id="progress">已回答 0 / 10 题</p>
+
+      <div class="diag-result" id="diagResult">
+        <div class="score"><span id="scoreNum">0</span><small> / 10</small></div>
+        <h3 id="scoreTitle"></h3>
+        <p id="scoreDesc"></p>
+        <a class="btn btn-block" href="#signup" id="scoreCta">带着这个结果来上课</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALC ============ -->
+<section>
+  <div class="wrap narrow">
+    <h2 class="center">你的公司，一年漏掉多少钱？</h2>
+    <p class="lead center">填两个数字，看看没有绩效系统的隐形成本。</p>
+    <div class="calc" id="calc">
+      <div class="f-two">
+        <div class="f"><label>员工人数</label><input type="number" id="cEmp" value="30" min="1"></div>
+        <div class="f"><label>平均月薪（RM）</label><input type="number" id="cSal" value="2800" min="500" step="100"></div>
+      </div>
+      <div class="calc-out">
+        <div class="calc-row"><span>你一年付出的薪资总额</span><b id="cTotal">RM 0</b></div>
+        <div class="calc-row"><span>如果 30% 的人只做到 70% 的产出</span><b id="cLoss" style="color:var(--red)">RM 0</b></div>
+        <div class="calc-row"><span>老板每周花在"救火"的时间</span><b id="cHours">0 小时</b></div>
+      </div>
+      <p class="calc-note">这只是薪资的部分。还没算离职重招、返工、客户流失。绩效系统要解决的，就是这笔每个月都在付、但报表上看不见的钱。</p>
+      <a class="btn btn-block" href="#signup">我要把这笔钱拿回来</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE ============ -->
+<section class="pain">
+  <div class="wrap narrow">
+    <h2>你现在的 KPI，和落地系统差在哪</h2>
+    <p class="lead">对号入座，看看左边有几项是你公司现在的情况。</p>
+    <table class="cmp">
+      <thead><tr><th>你现在的 KPI</th><th>落地的绩效系统</th></tr></thead>
+      <tbody>
+        <tr><td>目标只在老板脑子里</td><td>目标拆到每个岗位，白纸黑字</td></tr>
+        <tr><td>"做好一点"、"加油"</td><td>什么叫做到、什么叫没做到，有标准</td></tr>
+        <tr><td>月底才知道没达标</td><td>每周追进度，第 2 周就发现问题</td></tr>
+        <tr><td>固定薪 + 年终花红</td><td>固定 + 浮动，这个月做多这个月拿多</td></tr>
+        <tr><td>只有罚，没有奖；奖惩看心情</td><td>奖惩写下来、公开、快速兑现</td></tr>
+        <tr><td>老板追每一个人</td><td>主管背指标，老板看数字</td></tr>
+        <tr><td>制度贴在墙上，一年没动过</td><td>每季复盘调整，系统跟着公司长大</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ OUTCOMES ============ -->
+<section>
+  <div class="wrap">
+    <h2>2 小时后，你会带走什么</h2>
+    <p class="lead">不是"听懂了绩效"，而是拿到可以回去直接用的东西。</p>
+    <div class="take">
+      <div class="take-item">
+        <div class="k">带走 1</div>
+        <h3>你公司的绩效诊断结果</h3>
+        <p>课前完成 10 题诊断，课中老师会针对不同分数段讲解你最缺的是哪一块。</p>
+      </div>
+      <div class="take-item">
+        <div class="k">带走 2</div>
+        <h3>薪酬 + 绩效框架图</h3>
+        <p>目标、标准、追踪、薪酬、奖惩、复盘六大模块怎么串起来，一张图看懂。</p>
+      </div>
+      <div class="take-item">
+        <div class="k">带走 3</div>
+        <h3>3 个可套用的岗位考核模板</h3>
+        <p>生产/门店、销售、主管三类岗位的考核表，改个数字就能用在你公司。</p>
+      </div>
+    </div>
+    <div class="center" style="margin-top:32px">
+      <a class="btn" href="#signup">免费预留席位</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRAMEWORK ============ -->
+<section class="frame">
+  <div class="wrap">
+    <h2>绩效落地六步框架</h2>
+    <p class="lead">大多数公司只做了第 1 步就叫"有 KPI"。系统要跑起来，六步缺一不可。</p>
+
+    <div class="chain">
+      <div class="step"><div class="n">第 1 步</div><h3>定目标</h3><p>公司目标拆到部门、拆到岗位，每个人知道自己的数字。</p></div>
+      <div class="step"><div class="n">第 2 步</div><h3>立标准</h3><p>什么叫做到、什么叫没做到，写清楚，不靠老板判断。</p></div>
+      <div class="step"><div class="n">第 3 步</div><h3>追进度</h3><p>每周追、每月盘，问题在第 2 周浮现，不是月底才知道。</p></div>
+      <div class="step"><div class="n">第 4 步</div><h3>配薪酬</h3><p>固定 + 浮动的比例怎么设，让多做的人真的多拿。</p></div>
+      <div class="step"><div class="n">第 5 步</div><h3>设奖惩</h3><p>兑现要快、要公开，员工才相信这套制度是真的。</p></div>
+      <div class="step"><div class="n">第 6 步</div><h3>做复盘</h3><p>每季调一次标准和目标，系统跟着公司一起长大。</p></div>
+    </div>
+
+    <div class="frame-note">
+      研修班会用一家真实的马来西亚企业案例，把六步从头到尾走一遍，让你看到每一步在自己公司会长什么样。
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENDA ============ -->
+<section>
+  <div class="wrap narrow">
+    <h2>2 小时，具体讲什么</h2>
+    <p class="lead">重点直讲，没有铺垫，没有卖课环节占用你的时间。</p>
+    <div class="agenda">
+      <div class="ag"><div class="t">8:00 – 8:20</div><div><h3>为什么员工过 20 人，KPI 就推不动</h3><p>用 3 家马来西亚企业的真实情况，找出你公司现在卡在哪。</p></div></div>
+      <div class="ag"><div class="t">8:20 – 9:00</div><div><h3>绩效落地六步框架逐步拆解</h3><p>定目标、立标准、追进度、配薪酬、设奖惩、做复盘，每一步给你看实际表格长什么样。</p></div></div>
+      <div class="ag"><div class="t">9:00 – 9:35</div><div><h3>一家制造业企业从头走一遍</h3><p>45 人工厂，从"老板天天下车间"到"主管背产量"，每一步怎么设计、怎么推行。</p></div></div>
+      <div class="ag"><div class="t">9:35 – 9:50</div><div><h3>你的诊断结果解读</h3><p>红灯、黄灯、绿灯的公司，各自先改哪一步、别碰哪一步。</p></div></div>
+      <div class="ag"><div class="t">9:50 – 10:00</div><div><h3>现场答问 + 领取 3 个考核模板</h3><p>把你公司的情况问出来，老师当场给方向。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASES ============ -->
+<section>
+  <div class="wrap">
+    <h2>跟你同类型的企业，做了什么改变</h2>
+    <p class="lead">以下为案例格式示范，请替换成你们真实的辅导案例与数据。</p>
+    <div class="cases">
+      <div class="case">
+        <img src="https://placehold.co/800x450/0F2A44/C9A24C?text=%E5%88%B6%E9%80%A0%E4%B8%9A%E6%A1%88%E4%BE%8B%E5%9B%BE" alt="制造业案例">
+        <div class="case-body">
+          <div class="ind">制造业 · 员工 [45] 人 · [Penang]</div>
+          <h3>[生产线主管不背产量，老板天天下车间]</h3>
+          <div class="ba">
+            <div><b>导入前</b>[月产量波动大，返工率高，主管只报问题不解决]</div>
+            <div class="after"><b>导入 3 个月后</b><strong>[人均产值 +X%]</strong><br>[返工率下降，老板退出日常巡厂]</div>
+          </div>
+        </div>
+      </div>
+      <div class="case">
+        <img src="https://placehold.co/800x450/0F2A44/C9A24C?text=%E8%BF%9E%E9%94%81%E5%BA%97%E6%A1%88%E4%BE%8B%E5%9B%BE" alt="连锁店案例">
+        <div class="case-body">
+          <div class="ind">连锁零售 · [6] 间店 · 员工 [38] 人</div>
+          <h3>[店长流失快，每间店业绩全看店长心情]</h3>
+          <div class="ba">
+            <div><b>导入前</b>[店长固定薪，业绩好坏收入一样，一年换 4 个店长]</div>
+            <div class="after"><b>导入 6 个月后</b><strong>[店均营业额 +X%]</strong><br>[店长浮动薪制，半年零流失]</div>
+          </div>
+        </div>
+      </div>
+      <div class="case">
+        <img src="https://placehold.co/800x450/0F2A44/C9A24C?text=%E6%89%B9%E5%8F%91%E4%B8%9A%E6%A1%88%E4%BE%8B%E5%9B%BE" alt="批发业案例">
+        <div class="case-body">
+          <div class="ind">批发贸易 · 员工 [26] 人</div>
+          <h3>[销售团队只做老客户，新客户没人开发]</h3>
+          <div class="ba">
+            <div><b>导入前</b>[佣金只看总额，销售全靠回头单]</div>
+            <div class="after"><b>导入后</b><strong>[新客户订单 +X%]</strong><br>[新旧客户分开考核，销售主动跑外]</div>
+          </div>
+        </div>
+      </div>
+      <div class="case">
+        <img src="https://placehold.co/800x450/0F2A44/C9A24C?text=%E7%89%A9%E6%B5%81%E4%B8%9A%E6%A1%88%E4%BE%8B%E5%9B%BE" alt="物流业案例">
+        <div class="case-body">
+          <div class="ind">物流运输 · 员工 [60] 人</div>
+          <h3>[司机迟到、货损多，罚了也没用]</h3>
+          <div class="ba">
+            <div><b>导入前</b>[只有罚没有奖，好司机跟差司机一样薪水]</div>
+            <div class="after"><b>导入后</b><strong>[货损率 −X%]</strong><br>[准时 + 零货损奖金，投诉大幅减少]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:44px;font-size:22px">老板亲口怎么说</h3>
+    <p style="color:var(--grey);margin-top:4px">以下为示范，请替换成真实的学员语音/文字截图。</p>
+    <div class="testi">
+      <div class="wa"><div class="wa-b">[我以前以为员工懒，上完课才知道是我没有给他们标准。回去改了店长的薪酬结构，第二个月业绩就不一样了。]</div><div class="wa-n">[Mr. Lim · 连锁餐饮 · 3 间店 · 32 人]</div></div>
+      <div class="wa"><div class="wa-b">[最有用的是那个诊断，我们是红灯。老师讲完我就知道第一步要先做岗位标准，不是先做 KPI。]</div><div class="wa-n">[Ms. Wong · 塑料制品厂 · 58 人]</div></div>
+      <div class="wa"><div class="wa-b">[2 小时讲的东西比我之前上过一整天的课还实在，全部是能回去马上用的。]</div><div class="wa-n">[Mr. Chan · 五金批发 · 24 人]</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRAINER + BRAND ============ -->
+<section class="trainer">
+  <div class="wrap">
+    <h2>谁来教，为什么信得过</h2>
+    <div class="trainer-grid">
+      <div class="trainer-photo">
+        <img src="https://placehold.co/640x800/0F2A44/FFFFFF?text=%E6%9D%8E%E9%87%91%E6%98%AD%E8%80%81%E5%B8%88%E7%85%A7%E7%89%87" alt="李金昭老师">
+      </div>
+      <div>
+        <h3 style="font-size:26px">李金昭</h3>
+        <p style="color:var(--grey);margin-top:4px">品誉·马来西亚 绩效落地导师</p>
+        <ul class="cred">
+          <li>[XX] 年企业绩效与薪酬辅导经验</li>
+          <li>辅导超过 [XXX] 家马来西亚中小企业落地绩效系统</li>
+          <li>专注制造、连锁、批发、零售四大行业</li>
+          <li>[其他资历 / 认证 / 曾服务企业名称]</li>
+        </ul>
+        <p style="margin-top:18px;color:var(--grey)">老师只讲在马来西亚企业验证过的做法，不讲理论。课上会拿真实案例，一步一步拆给你看。</p>
+      </div>
+    </div>
+
+    <div class="brand-row">
+      <div class="brand">
+        <div class="big">No.1<small>品誉 · 中国排名第一的绩效考核体系，20+ 年落地研发</small></div>
+      </div>
+      <div class="brand">
+        <div class="big">5000+ 家<small>进驻马来西亚 2 年，已有超过 5000 家企业上过品誉的课</small></div>
+      </div>
+      <div class="brand">
+        <div class="big">首个海外分部<small>由 MACTION 企业商学院联合品誉集团设立</small></div>
+      </div>
+    </div>
+    <p style="margin-top:20px;color:var(--grey);font-size:15px">品誉·马来西亚肩负使命，将世界领先、实战落地的绩效考核系统带入本地企业，协助中小型企业实现系统化管理、团队激励和利润增长。</p>
+  </div>
+</section>
+
+<!-- ============ AFTER SIGNUP ============ -->
+<section class="frame">
+  <div class="wrap narrow">
+    <h2>报名后 24 小时内，你会收到什么</h2>
+    <div class="flow">
+      <div class="fl"><div class="fn">1</div><div><h3>顾问 WhatsApp 确认资格</h3><p>确认你是决策者、了解公司规模和最头痛的问题，方便老师课上针对性讲解。</p></div></div>
+      <div class="fl"><div class="fn">2</div><div><h3>收到《绩效自检表》PDF</h3><p>一页纸，对照自己公司现在的制度，上课时带着问题来。</p></div></div>
+      <div class="fl"><div class="fn">3</div><div><h3>课前一天发 Zoom 链接 + 提醒</h3><p>手机或电脑都能进，晚上 8PM 准时开始。</p></div></div>
+    </div>
+    <div class="frame-note">研修班结束后，符合条件的企业可申请 1 对 1 企业绩效诊断（每月限 5 家），由顾问到你公司实地了解情况后给出落地方案。</div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section>
+  <div class="wrap narrow">
+    <h2>老板常问的问题</h2>
+    <details><summary>我已经有 KPI 了，还需要上吗？</summary><p>很多公司"设了 KPI 却没结果"，就是因为只做了六步里的第 1 步。课上你会看到自己缺的是标准、追踪、薪酬还是奖惩，回去补对的那一块。</p></details>
+    <details><summary>我是工厂 / 连锁店 / 批发，这套用得上吗？</summary><p>课程就是针对这四类行业设计的，案例也是这四类。只要你需要带团队、设目标、出结果，六步框架都适用。</p></details>
+    <details><summary>老板一定要亲自来吗？</summary><p>建议老板亲自参与，因为薪酬和考核是战略级决定，牵涉奖惩和成本。主管、HR 可以一起来，但必须老板拍板才推得动。</p></details>
+    <details><summary>2 小时真的能学到东西？</summary><p>2 小时不是让你学完整套系统，而是让你拿到框架、诊断结果和模板，知道自己公司先改哪一步。想深入落地的老板，课后可以和顾问约企业诊断。</p></details>
+    <details><summary>免费的，有什么条件吗？</summary><p>限时免费，只开放给有决策权、员工 20 人以上的企业老板。因为讲师时间有限，每场限 100 家企业，报名后顾问会先确认资格。</p></details>
+    <details><summary>上完课想深入落地，下一步是什么？</summary><p>课后可申请 1 对 1 企业绩效诊断。顾问会到你公司实地了解岗位、薪酬和现有制度，给出适合你规模的落地方案。每月限 5 家，课上会说明申请方式。</p></details>
+    <details><summary>线上课要请假吗？</summary><p>晚上 8PM 到 10PM，Zoom 直播，用手机或电脑都可以，不占白天时间。</p></details>
+  </div>
+</section>
+
+<!-- ============ SIGNUP ============ -->
+<section class="signup" id="signup">
+  <div class="wrap narrow">
+    <h2 class="center">预留席位</h2>
+    <p class="lead center">08/09/2026（星期二）8PM – 10PM · Zoom 直播 · 每场限 100 家企业</p>
+
+    <div class="seats">
+      <div class="seats-row"><span>本场席位</span><b><span id="seatsTaken">68</span> / 100 家企业已报名</b></div>
+      <div class="bar"><div class="bar-in" id="seatsBar"></div></div>
+      <p>上一场提前 3 天满额，本场预计 2 天内截止。</p>
+    </div>
+    <form id="regForm" novalidate>
+      <div class="gate" id="gate">这场研修班是为员工 20 人以上的企业老板设计的。如果你的团队暂时未到这个规模，可以先留下资料，我们会在有适合小团队的场次时通知你。</div>
+
+      <div class="f-two">
+        <div class="f"><label>你怎么称呼 <span>*</span></label><input name="name" required placeholder="例如：Mr. Tan"></div>
+        <div class="f"><label>WhatsApp 号码 <span>*</span></label><input name="phone" type="tel" required placeholder="例如：012-345 6789"></div>
+      </div>
+      <div class="f-two">
+        <div class="f"><label>公司名称 <span>*</span></label><input name="company" required placeholder="公司名"></div>
+        <div class="f"><label>你的职位 <span>*</span></label>
+          <select name="role" required>
+            <option value="">请选择</option>
+            <option>老板 / 董事</option>
+            <option>合伙人</option>
+            <option>总经理 / 决策者</option>
+            <option>主管 / HR（会和老板一起参加）</option>
+          </select>
+        </div>
+      </div>
+      <div class="f-two">
+        <div class="f"><label>行业 <span>*</span></label>
+          <select name="industry" required>
+            <option value="">请选择</option>
+            <option>工厂 / 制造业</option>
+            <option>连锁店 / 零售业</option>
+            <option>批发 / 贸易</option>
+            <option>餐饮</option>
+            <option>物流 / 运输</option>
+            <option>服务业</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <div class="f"><label>员工人数 <span>*</span></label>
+          <select name="size" id="sizeSel" required>
+            <option value="">请选择</option>
+            <option value="s">10 人以下</option>
+            <option value="s">10 – 19 人</option>
+            <option value="m">20 – 49 人</option>
+            <option value="l">50 – 99 人</option>
+            <option value="xl">100 人以上</option>
+          </select>
+        </div>
+      </div>
+      <div class="f">
+        <label>你现在最头痛的是哪几个？（可多选）<span>*</span></label>
+        <div class="chk">
+          <label><input type="checkbox" name="pain" value="业绩停滞，利润下滑">业绩停滞，利润下滑</label>
+          <label><input type="checkbox" name="pain" value="主管不背指标，老板事事亲力亲为">主管不背指标，老板事事亲力亲为</label>
+          <label><input type="checkbox" name="pain" value="薪酬和结果脱钩，员工没积极性">薪酬和结果脱钩，员工没积极性</label>
+          <label><input type="checkbox" name="pain" value="有KPI但推不动、没结果">有 KPI 但推不动、没结果</label>
+          <label><input type="checkbox" name="pain" value="留不住人，一直在招人培训人">留不住人，一直在招人培训人</label>
+        </div>
+      </div>
+      <input type="hidden" name="diag" id="diagField" value="未完成诊断">
+      <button type="submit" class="btn btn-block">确认报名，预留席位</button>
+      <p class="form-foot">提交后会跳转 WhatsApp，顾问会确认席位并发送 Zoom 链接。</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© MACTION SDN. BHD. (Reg. No.:1299862W/201801037832) All Rights Reserved</div>
+</footer>
+
+<div class="sticky">
+  <div class="s-txt"><b>08/09 · 8PM Zoom</b>限 100 家企业 · 免费</div>
+  <a class="btn" href="#signup">预留席位</a>
+</div>
+
+<script>
+  // ====== 设定：把 WhatsApp 号码换成你们顾问的号码（国际格式，不带 + 和空格） ======
+  var WHATSAPP_NUMBER = "60123456789";
+
+  // ---------- 企业诊断 ----------
+  var answers = new Array(10).fill(null);
+  var btns = document.querySelectorAll('.q-btn');
+  var progress = document.getElementById('progress');
+  var result = document.getElementById('diagResult');
+
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var q = +b.dataset.q, v = +b.dataset.v;
+      answers[q] = v;
+      document.querySelectorAll('.q-btn[data-q="'+q+'"]').forEach(function(x){x.classList.remove('on-yes','on-no');});
+      b.classList.add(v ? 'on-yes' : 'on-no');
+      var done = answers.filter(function(a){return a!==null;}).length;
+      progress.textContent = '已回答 ' + done + ' / 10 题';
+      if (done === 10) showResult();
+    });
+  });
+
+  function showResult(){
+    var score = answers.reduce(function(a,b){return a+b;},0);
+    var title, desc;
+    if (score <= 3){
+      title = '红灯：公司基本靠老板一个人在撑';
+      desc = '六步里你几乎每一步都缺。这不是员工问题，是还没有系统。好消息是：从零开始搭，反而最快见效。研修班会告诉你先补哪一步。';
+    } else if (score <= 6){
+      title = '黄灯：有制度的影子，但跑不起来';
+      desc = '你已经做了一部分，但缺了让它"转起来"的关键模块（通常是标准、追踪或薪酬挂钩）。补对一两块，效果会差很多。';
+    } else if (score <= 8){
+      title = '绿灯边缘：系统在跑，但还靠人推';
+      desc = '你的基础比大多数公司好。现在要处理的是中层考核和复盘机制，让系统不用老板推也能自己跑。';
+    } else {
+      title = '绿灯：系统已经成型';
+      desc = '你已经走在前面。研修班对你最有价值的是薪酬结构优化和跨部门的绩效联动，让好系统变成利润。';
+    }
+    document.getElementById('scoreNum').textContent = score;
+    document.getElementById('scoreTitle').textContent = title;
+    document.getElementById('scoreDesc').textContent = desc;
+    document.getElementById('diagField').value = score + '/10 - ' + title;
+    result.classList.add('show');
+    result.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+
+  // ---------- 利润漏损计算器 ----------
+  function calc(){
+    var emp=+document.getElementById('cEmp').value||0, sal=+document.getElementById('cSal').value||0;
+    var total=emp*sal*12;
+    var loss=Math.round(total*0.30*0.30);
+    var hours=Math.min(40, Math.round(emp*0.6));
+    var fmt=function(n){return 'RM '+n.toLocaleString('en-MY');};
+    document.getElementById('cTotal').textContent=fmt(total);
+    document.getElementById('cLoss').textContent=fmt(loss);
+    document.getElementById('cHours').textContent=hours+' 小时';
+  }
+  ['cEmp','cSal'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
+  calc();
+
+  // ---------- 席位进度条（手动更新 seatsTaken 数字即可） ----------
+  var taken=+document.getElementById('seatsTaken').textContent;
+  document.getElementById('seatsBar').style.width=Math.min(100,taken)+'%';
+  document.querySelector('.sticky .s-txt').innerHTML='<b>08/09 · 8PM Zoom</b>剩 '+(100-taken)+' 席 · 免费';
+
+  // ---------- 报名表 ----------
+  var sizeSel = document.getElementById('sizeSel');
+  var gate = document.getElementById('gate');
+  sizeSel.addEventListener('change', function(){
+    gate.classList.toggle('show', sizeSel.value === 's');
+  });
+
+  document.getElementById('regForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var f = e.target;
+    if (!f.checkValidity()){ f.reportValidity(); return; }
+    var pains = Array.from(f.querySelectorAll('input[name="pain"]:checked')).map(function(c){return c.value;});
+    if (!pains.length){ alert('请至少选择一个你目前最头痛的问题。'); return; }
+
+    var sizeText = sizeSel.options[sizeSel.selectedIndex].text;
+    var msg = '我要报名 08/09 薪酬与绩效研修班\n'
+      + '姓名：' + f.name.value + '\n'
+      + '公司：' + f.company.value + '\n'
+      + '职位：' + f.role.value + '\n'
+      + '行业：' + f.industry.value + '\n'
+      + '员工人数：' + sizeText + '\n'
+      + '最头痛：' + pains.join('、') + '\n'
+      + '绩效诊断：' + f.diag.value;
+    window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+  });
+</script>
+</body>
+</html>
