@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工业名录搜索 — 工厂 / 工业区 / 中小型工业</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECEFF2;
+    --panel:#F6F7F9;
+    --ink:#141C26;
+    --blue:#1F4E79;
+    --blue-deep:#123049;
+    --accent:#E8722C;
+    --accent-deep:#C65A1B;
+    --steel:#5C6672;
+    --line:#C7CED6;
+    --line-strong:#9AA5B1;
+    --ok:#2E7D4F;
+    --warn:#B23B2E;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', -apple-system, sans-serif;
+    line-height:1.5;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-attachment:fixed;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px;}
+
+  header.masthead{
+    background:var(--blue-deep);
+    color:#fff;
+    border:1px solid var(--blue-deep);
+    padding:22px 24px;
+    position:relative;
+    margin-bottom:18px;
+  }
+  header.masthead::before, header.masthead::after,
+  header.masthead .brk-b::before, header.masthead .brk-b::after{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    border-color:var(--accent);
+    border-style:solid;
+    border-width:0;
+  }
+  header.masthead::before{top:6px;left:6px;border-top-width:2px;border-left-width:2px;}
+  header.masthead::after{top:6px;right:6px;border-top-width:2px;border-right-width:2px;}
+  .brk-b{position:absolute;inset:0;}
+  .brk-b::before{bottom:6px;left:6px;border-bottom-width:2px;border-left-width:2px;top:auto;}
+  .brk-b::after{bottom:6px;right:6px;border-bottom-width:2px;border-right-width:2px;top:auto;}
+
+  header.masthead h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:26px;
+    margin:0 0 6px;
+    letter-spacing:.2px;
+  }
+  header.masthead p{
+    margin:0;
+    color:#C7D6E4;
+    font-size:14px;
+    max-width:640px;
+  }
+
+  section.panel{
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    padding:20px 22px;
+    margin-bottom:16px;
+  }
+  section.panel h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:15px;
+    font-weight:600;
+    margin:0 0 14px;
+    color:var(--blue-deep);
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  section.panel h2 .idx{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:#fff;
+    background:var(--blue);
+    padding:2px 6px;
+  }
+
+  label{display:block;font-size:13px;color:var(--steel);margin-bottom:5px;}
+  input[type=text], input[type=password], textarea{
+    width:100%;
+    border:1px solid var(--line-strong);
+    background:#fff;
+    padding:9px 10px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:14px;
+    color:var(--ink);
+    border-radius:var(--radius);
+  }
+  input[type=text]:focus, input[type=password]:focus, textarea:focus{
+    outline:2px solid var(--blue);
+    outline-offset:1px;
+  }
+  .field{margin-bottom:14px;}
+  .hint{font-size:12.5px;color:var(--steel);margin-top:5px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row > .field{flex:1;min-width:220px;}
+
+  .key-row{display:flex;gap:8px;align-items:flex-end;}
+  .key-row .field{flex:1;margin-bottom:0;}
+  button{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:14px;
+    font-weight:600;
+    border:1px solid var(--blue-deep);
+    background:#fff;
+    color:var(--blue-deep);
+    padding:9px 16px;
+    cursor:pointer;
+    border-radius:var(--radius);
+  }
+  button:hover{background:var(--blue-deep);color:#fff;}
+  button.primary{background:var(--accent);border-color:var(--accent-deep);color:#fff;}
+  button.primary:hover{background:var(--accent-deep);}
+  button:disabled{opacity:.45;cursor:not-allowed;}
+  button:disabled:hover{background:#fff;color:var(--blue-deep);}
+  button.primary:disabled:hover{background:var(--accent);color:#fff;}
+
+  details.guide{margin-top:2px;}
+  details.guide summary{cursor:pointer;font-size:13px;color:var(--blue);font-weight:600;}
+  details.guide .body{
+    margin-top:10px;
+    font-size:13px;
+    color:var(--ink);
+    border-left:2px solid var(--line-strong);
+    padding-left:14px;
+  }
+  details.guide ol{margin:8px 0;padding-left:20px;}
+  details.guide li{margin-bottom:6px;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    border:1px solid var(--line-strong);
+    background:#fff;
+    padding:8px 12px;
+    font-size:13.5px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border-radius:var(--radius);
+    user-select:none;
+  }
+  .chip input{margin:0;}
+  .chip.on{border-color:var(--blue);background:#E7EEF4;}
+  .chip .alt{color:var(--steel);font-size:11.5px;}
+
+  .toggle-line{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-top:12px;}
+  .toggle-line input{margin:0;}
+
+  .estimate{
+    margin-top:16px;
+    padding:12px 14px;
+    background:#fff;
+    border:1px dashed var(--line-strong);
+    font-size:13px;
+    color:var(--steel);
+  }
+  .estimate b{color:var(--ink);font-family:'IBM Plex Mono', monospace;}
+  .estimate .cost-note{margin-top:6px;color:var(--warn);}
+
+  .actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+
+  #log{
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--steel);
+    max-height:140px;
+    overflow-y:auto;
+    border-top:1px solid var(--line);
+    padding-top:8px;
+    display:none;
+  }
+  #log div{padding:1px 0;}
+  #log div.err{color:var(--warn);}
+  #log div.ok{color:var(--ok);}
+
+  .results-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+  .results-head h2{margin:0;}
+  .count-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    background:var(--blue-deep);
+    color:#fff;
+    padding:3px 8px;
+  }
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  thead th{
+    text-align:left;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:12.5px;
+    color:var(--blue-deep);
+    border-bottom:2px solid var(--blue-deep);
+    padding:8px 10px;
+    white-space:nowrap;
+  }
+  tbody td{
+    padding:9px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  tbody tr:hover{background:#fff;}
+  td.name{font-weight:600;min-width:160px;}
+  td.addr{color:var(--ink);min-width:220px;}
+  td.meta{color:var(--steel);white-space:nowrap;font-size:12.5px;}
+  .empty-state{
+    padding:30px 10px;
+    text-align:center;
+    color:var(--steel);
+    font-size:13.5px;
+  }
+
+  footer{margin-top:24px;font-size:12px;color:var(--steel);text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brk-b"></div>
+    <h1>工业名录搜索</h1>
+    <p>按工厂、工业区、中小型工业类别，抓取马来西亚公司名字与地址，导出 CSV。数据来自 Google Places API，运行在你自己的浏览器里，不经过任何第三方服务器。</p>
+  </header>
+
+  <section class="panel">
+    <h2><span class="idx">01</span>Google API 金钥</h2>
+    <div class="key-row">
+      <div class="field">
+        <label for="apiKey">Places API (New) Key</label>
+        <input type="password" id="apiKey" placeholder="贴上你的 API 金钥">
+      </div>
+      <button id="toggleKeyBtn" type="button">显示</button>
+      <button id="saveKeyBtn" type="button">保存</button>
+    </div>
+    <div class="hint" id="keyStatus">金钥只会存在你这台电脑的浏览器（localStorage），不会上传。</div>
+
+    <details class="guide">
+      <summary>还没有金钥？点这里看申请步骤</summary>
+      <div class="body">
+        <ol>
+          <li>打开 <strong>console.cloud.google.com</strong>，新建一个项目（或用现有的）。</li>
+          <li>左边选单进 "APIs &amp; Services" → "Library"，搜索并启用 <strong>Places API (New)</strong>（注意不是旧版 Places API，旧版已经不开放给新项目）。</li>
+          <li>系统会要求绑定帐单帐户（需要信用卡）。这不代表马上收费 — Google 每个月给每个 SKU 免费额度：只抓名字/地址属于 Pro 级，每月 5,000 次免费；超出后大约 $32 美金/1000次。如果多勾电话、网站、评分这些字段，会跳到 Enterprise 级，大约 $35/1000次，免费额度也比较少（每月 1,000 次）。2025 年 3 月起 Google 已经取消旧版每月 $200 统一额度，改成这种按字段分级的额度，所以字段勾越多，费用可能跳更快。</li>
+          <li>到 "Credentials" 建立 API 金钥，建议限制它只能调用 Places API (New)，避免被盗用。</li>
+          <li>把金钥贴回上面的输入框，按"保存"。</li>
+        </ol>
+      </div>
+    </details>
+  </section>
+
+  <section class="panel">
+    <h2><span class="idx">02</span>搜索范围与类别</h2>
+
+    <div class="field">
+      <label for="regionInput">地区（可以打多个，用逗号分开）</label>
+      <input type="text" id="regionInput" placeholder="例如：Bukit Mertajam, Penang — 留空 = 搜索全马 16 个州属">
+      <div class="hint">留空会自动跑全马来西亚 16 个州属/联邦直辖区，调用次数会比较多，建议先看下面的预估次数。</div>
+    </div>
+
+    <div class="field">
+      <label>类别（可多选）</label>
+      <div class="chips" id="categoryChips">
+        <label class="chip on" data-cat="factory">
+          <input type="checkbox" checked> 工厂 <span class="alt">kilang / factory</span>
+        </label>
+        <label class="chip on" data-cat="industrial_area">
+          <input type="checkbox" checked> 工业区 <span class="alt">kawasan perindustrian</span>
+        </label>
+        <label class="chip" data-cat="sme_industry">
+          <input type="checkbox"> 中小型工业 <span class="alt">industri kecil &amp; sederhana</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="customKeyword">自定义关键字（选填，逗号分开可加多个）</label>
+      <input type="text" id="customKeyword" placeholder="例如：五金厂, 塑胶厂, warehouse">
+    </div>
+
+    <div class="toggle-line">
+      <input type="checkbox" id="multiLang">
+      <label for="multiLang" style="margin:0;">每个类别同时用中/英/马来文三个关键词搜（覆盖面更广，但调用次数会乘 3）</label>
+    </div>
+    <div class="toggle-line">
+      <input type="checkbox" id="withContact">
+      <label for="withContact" style="margin:0;">同时抓电话/网站/评分（会跳到 Enterprise 级，费用较高，免费额度也较少）</label>
+    </div>
+
+    <div class="estimate" id="estimate">请选择至少一个类别</div>
+
+    <div class="actions">
+      <button class="primary" id="searchBtn" type="button">开始搜索</button>
+      <button id="moreBtn" type="button" style="display:none;">加载下一页结果</button>
+      <button id="clearBtn" type="button">清空结果</button>
+    </div>
+
+    <div id="log"></div>
+  </section>
+
+  <section class="panel">
+    <div class="results-head">
+      <h2 style="margin-bottom:0;"><span class="idx">03</span>结果</h2>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="count-badge" id="countBadge">0 家</span>
+        <button id="exportBtn" type="button" disabled>导出 CSV</button>
+      </div>
+    </div>
+    <div id="resultsArea">
+      <div class="empty-state">还没有搜索结果 — 设定好范围与类别后按"开始搜索"。</div>
+    </div>
+  </section>
+
+  <footer>数据经由 Google Places API 取得，请遵守 Google Maps Platform 使用条款；抓取的资料仅供你自己业务开发使用。</footer>
+</div>
+
+<script>
+(function(){
+  const STATES = ["Selangor","Kuala Lumpur","Johor","Pulau Pinang","Perak","Kedah",
+    "Negeri Sembilan","Melaka","Pahang","Terengganu","Kelantan","Perlis",
+    "Sabah","Sarawak","Putrajaya","Labuan"];
+
+  const PRESETS = {
+    factory: { label:"工厂", terms:["kilang","工厂","factory"] },
+    industrial_area: { label:"工业区", terms:["kawasan perindustrian","工业区","industrial area"] },
+    sme_industry: { label:"中小型工业", terms:["industri kecil dan sederhana","小型工业","small medium industry"] }
+  };
+
+  const BASIC_FIELDS = "places.id,places.displayName,places.formattedAddress,places.location,places.types,nextPageToken";
+  const FULL_FIELDS = BASIC_FIELDS + ",places.nationalPhoneNumber,places.internationalPhoneNumber,places.websiteUri,places.rating,places.userRatingCount";
+
+  const $ = (id) => document.getElementById(id);
+  const apiKeyInput = $("apiKey");
+  const keyStatus = $("keyStatus");
+  const regionInput = $("regionInput");
+  const customKeyword = $("customKeyword");
+  const multiLang = $("multiLang");
+  const withContact = $("withContact");
+  const estimateBox = $("estimate");
+  const searchBtn = $("searchBtn");
+  const moreBtn = $("moreBtn");
+  const clearBtn = $("clearBtn");
+  const exportBtn = $("exportBtn");
+  const logBox = $("log");
+  const resultsArea = $("resultsArea");
+  const countBadge = $("countBadge");
+
+  let results = [];       // deduped result rows
+  let seenKeys = new Set();
+  let pendingQueries = []; // {term, label, region, pageToken, exhausted}
+
+  // ---- API key persistence ----
+  const savedKey = localStorage.getItem("industrialSearchApiKey");
+  if (savedKey) { apiKeyInput.value = savedKey; keyStatus.textContent = "已从本机读取上次保存的金钥。"; }
+
+  $("toggleKeyBtn").addEventListener("click", () => {
+    apiKeyInput.type = apiKeyInput.type === "password" ? "text" : "password";
+    $("toggleKeyBtn").textContent = apiKeyInput.type === "password" ? "显示" : "隐藏";
+  });
+  $("saveKeyBtn").addEventListener("click", () => {
+    localStorage.setItem("industrialSearchApiKey", apiKeyInput.value.trim());
+    keyStatus.textContent = "已保存到本机浏览器。";
+  });
+
+  // ---- category chips ----
+  document.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", (e) => {
+      const box = chip.querySelector("input");
+      if (e.target !== box) box.checked = !box.checked;
+      chip.classList.toggle("on", box.checked);
+      updateEstimate();
+    });
+  });
+  [regionInput, customKeyword, multiLang, withContact].forEach(el => {
+    el.addEventListener("input", updateEstimate);
+    el.addEventListener("change", updateEstimate);
+  });
+
+  function getSelectedCategories(){
+    return Array.from(document.querySelectorAll(".chip")).filter(c => c.querySelector("input").checked).map(c => c.dataset.cat);
+  }
+  function getRegions(){
+    const raw = regionInput.value.trim();
+    if (!raw) return STATES.slice();
+    return raw.split(",").map(s => s.trim()).filter(Boolean);
+  }
+  function getCustomTerms(){
+    return customKeyword.value.split(",").map(s => s.trim()).filter(Boolean);
+  }
+  function getAllTerms(){
+    const cats = getSelectedCategories();
+    const terms = [];
+    cats.forEach(cat => {
+      const p = PRESETS[cat];
+      if (multiLang.checked) p.terms.forEach(t => terms.push({term:t, label:p.label}));
+      else terms.push({term:p.terms[0], label:p.label});
+    });
+    getCustomTerms().forEach(t => terms.push({term:t, label:"自定义"}));
+    return terms;
+  }
+
+  function updateEstimate(){
+    const terms = getAllTerms();
+    const regions = getRegions();
+    const calls = terms.length * regions.length;
+    if (calls === 0){
+      estimateBox.innerHTML = "请选择至少一个类别或填一个自定义关键字";
+      searchBtn.disabled = true;
+      return;
+    }
+    searchBtn.disabled = false;
+    const tier = withContact.checked ? "Enterprise 级（约 $35/1000 次，免费额度每月 1,000 次）" : "Pro 级（约 $32/1000 次，免费额度每月 5,000 次）";
+    estimateBox.innerHTML = `预计发起 <b>${calls}</b> 次 API 调用（${terms.length} 个关键词 × ${regions.length} 个地区），每次最多回 20 笔。<br>字段等级：${tier}` +
+      (calls > 60 ? `<div class="cost-note">调用次数偏多，建议先缩小地区范围或减少类别，避免一次跑掉太多免费额度。</div>` : "");
+  }
+  updateEstimate();
+
+  // ---- log ----
+  function log(msg, cls){
+    logBox.style.display = "block";
+    const line = document.createElement("div");
+    if (cls) line.className = cls;
+    line.textContent = msg;
+    logBox.appendChild(line);
+    logBox.scrollTop = logBox.scrollHeight;
+  }
+
+  // ---- Places API call ----
+  async function callTextSearch(query, pageToken){
+    const key = apiKeyInput.value.trim();
+    const body = { textQuery: query, regionCode: "MY", languageCode: "zh-CN", pageSize: 20 };
+    if (pageToken) body.pageToken = pageToken;
+    const res = await fetch("https://places.googleapis.com/v1/places:textSearch", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": key,
+        "X-Goog-FieldMask": withContact.checked ? FULL_FIELDS : BASIC_FIELDS
+      },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok){
+      const msg = (data && data.error && data.error.message) ? data.error.message : res.statusText;
+      throw new Error(msg);
+    }
+    return data;
+  }
+
+  function addPlaces(places, sourceLabel, region){
+    if (!places) return 0;
+    let added = 0;
+    places.forEach(p => {
+      const name = (p.displayName && p.displayName.text) || "";
+      const addr = p.formattedAddress || "";
+      const key = (name + "|" + addr).toLowerCase().trim();
+      if (!name || seenKeys.has(key)) return;
+      seenKeys.add(key);
+      results.push({
+        name, addr,
+        phone: p.nationalPhoneNumber || p.internationalPhoneNumber || "",
+        website: p.websiteUri || "",
+        rating: (p.rating != null) ? (p.rating + (p.userRatingCount ? " (" + p.userRatingCount + ")" : "")) : "",
+        category: sourceLabel,
+        region
+      });
+      added++;
+    });
+    return added;
+  }
+
+  function renderResults(){
+    countBadge.textContent = results.length + " 家";
+    exportBtn.disabled = results.length === 0;
+    if (results.length === 0){
+      resultsArea.innerHTML = '<div class="empty-state">还没有搜索结果 — 设定好范围与类别后按"开始搜索"。</div>';
+      return;
+    }
+    const showContact = results.some(r => r.phone || r.website || r.rating);
+    let html = "<table><thead><tr><th>公司名称</th><th>地址</th>";
+    if (showContact) html += "<th>电话</th><th>网站</th><th>评分</th>";
+    html += "<th>类别</th><th>地区</th></tr></thead><tbody>";
+    results.forEach(r => {
+      html += "<tr>";
+      html += `<td class="name">${escapeHtml(r.name)}</td>`;
+      html += `<td class="addr">${escapeHtml(r.addr)}</td>`;
+      if (showContact){
+        html += `<td class="meta">${escapeHtml(r.phone)}</td>`;
+        html += `<td class="meta">${r.website ? `<a href="${escapeAttr(r.website)}" target="_blank" rel="noopener">链接</a>` : ""}</td>`;
+        html += `<td class="meta">${escapeHtml(r.rating)}</td>`;
+      }
+      html += `<td class="meta">${escapeHtml(r.category)}</td>`;
+      html += `<td class="meta">${escapeHtml(r.region)}</td>`;
+      html += "</tr>";
+    });
+    html += "</tbody></table>";
+    resultsArea.innerHTML = html;
+  }
+
+  function escapeHtml(s){
+    return String(s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+  function escapeAttr(s){ return escapeHtml(s); }
+
+  function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  async function runQueries(queries, isFirstPass){
+    let okCount = 0, errCount = 0;
+    for (let i = 0; i < queries.length; i++){
+      const q = queries[i];
+      const query = q.term + " " + q.region;
+      log(`(${i+1}/${queries.length}) 搜索: ${query} ...`);
+      try {
+        const data = await callTextSearch(query, isFirstPass ? null : q.pageToken);
+        const added = addPlaces(data.places, q.label, q.region);
+        okCount++;
+        log(`  → 找到 ${(data.places||[]).length} 笔，新增 ${added} 笔`, "ok");
+        if (data.nextPageToken){ q.pageToken = data.nextPageToken; q.exhausted = false; }
+        else { q.exhausted = true; }
+      } catch (err){
+        errCount++;
+        q.exhausted = true;
+        log(`  ✕ 失败: ${err.message}`, "err");
+      }
+      renderResults();
+      await sleep(250);
+    }
+    return { okCount, errCount };
+  }
+
+  searchBtn.addEventListener("click", async () => {
+    if (!apiKeyInput.value.trim()){
+      alert("请先填入并保存 Google Places API 金钥。");
+      return;
+    }
+    const terms = getAllTerms();
+    const regions = getRegions();
+    if (terms.length === 0){ alert("请至少选一个类别或填一个自定义关键字。"); return; }
+
+    pendingQueries = [];
+    terms.forEach(t => regions.forEach(r => pendingQueries.push({term:t.term, label:t.label, region:r, pageToken:null, exhausted:false})));
+
+    searchBtn.disabled = true; moreBtn.disabled = true;
+    logBox.innerHTML = "";
+    log(`开始搜索，共 ${pendingQueries.length} 个查询...`);
+    const {okCount, errCount} = await runQueries(pendingQueries, true);
+    log(`完成：${okCount} 个查询成功，${errCount} 个失败。目前共 ${results.length} 家不重复的结果。`);
+    searchBtn.disabled = false; moreBtn.disabled = false;
+    moreBtn.style.display = pendingQueries.some(q => !q.exhausted) ? "inline-block" : "none";
+  });
+
+  moreBtn.addEventListener("click", async () => {
+    const todo = pendingQueries.filter(q => !q.exhausted && q.pageToken);
+    if (todo.length === 0){ moreBtn.style.display = "none"; return; }
+    moreBtn.disabled = true; searchBtn.disabled = true;
+    log(`加载下一页，共 ${todo.length} 个查询，等待金钥生效...`);
+    await sleep(2000);
+    const {okCount, errCount} = await runQueries(todo, false);
+    log(`完成：${okCount} 个成功，${errCount} 个失败。目前共 ${results.length} 家不重复的结果。`);
+    moreBtn.disabled = false; searchBtn.disabled = false;
+    moreBtn.style.display = pendingQueries.some(q => !q.exhausted) ? "inline-block" : "none";
+  });
+
+  clearBtn.addEventListener("click", () => {
+    results = []; seenKeys = new Set(); pendingQueries = [];
+    logBox.innerHTML = ""; logBox.style.display = "none";
+    moreBtn.style.display = "none";
+    renderResults();
+  });
+
+  exportBtn.addEventListener("click", () => {
+    const header = ["公司名称","地址","电话","网站","评分","类别","地区"];
+    const rows = results.map(r => [r.name, r.addr, r.phone, r.website, r.rating, r.category, r.region]);
+    const csv = [header, ...rows].map(row =>
+      row.map(cell => `"${String(cell || "").replace(/"/g, '""')}"`).join(",")
+    ).join("\r\n");
+    const blob = new Blob(["\uFEFF" + csv], {type:"text/csv;charset=utf-8;"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `工业名录_${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  renderResults();
+})();
+</script>
+</body>
+</html>
