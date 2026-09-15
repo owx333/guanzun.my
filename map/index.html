@@ -258,7 +258,7 @@
       <button id="toggleKeyBtn" type="button">显示</button>
       <button id="saveKeyBtn" type="button">保存</button>
     </div>
-    <div class="hint" id="keyStatus">金钥只会存在你这台电脑的浏览器（localStorage），不会上传。</div>
+    <div class="hint" id="keyStatus">金钥只会存在你这台电脑的浏览器（localStorage），不会上传给我或任何第三方。</div>
 
     <details class="guide">
       <summary>还没有金钥？点这里看申请步骤</summary>
@@ -269,6 +269,64 @@
           <li>系统会要求绑定帐单帐户（需要信用卡）。这不代表马上收费 — Google 每个月给每个 SKU 免费额度：只抓名字/地址属于 Pro 级，每月 5,000 次免费；超出后大约 $32 美金/1000次。如果多勾电话、网站、评分这些字段，会跳到 Enterprise 级，大约 $35/1000次，免费额度也比较少（每月 1,000 次）。2025 年 3 月起 Google 已经取消旧版每月 $200 统一额度，改成这种按字段分级的额度，所以字段勾越多，费用可能跳更快。</li>
           <li>到 "Credentials" 建立 API 金钥，建议限制它只能调用 Places API (New)，避免被盗用。</li>
           <li>把金钥贴回上面的输入框，按"保存"。</li>
+        </ol>
+      </div>
+    </details>
+
+    <div class="field" style="margin-top:16px;">
+      <label for="proxyUrl">中转站网址（Proxy Worker URL）</label>
+      <input type="text" id="proxyUrl" placeholder="例如：https://your-worker.your-name.workers.dev">
+      <div class="hint">Google Places API (New) 不允许浏览器直接调用，需要一个中转站转发请求。按下面指南建一个免费的 Cloudflare Worker，把它的网址贴在这里。</div>
+    </div>
+    <button id="saveProxyBtn" type="button">保存中转站网址</button>
+
+    <details class="guide" style="margin-top:14px;">
+      <summary>还没有中转站？点这里看怎么免费建一个（Cloudflare Workers）</summary>
+      <div class="body">
+        <ol>
+          <li>打开 <strong>dash.cloudflare.com</strong>，注册一个免费帐号（不需要信用卡）。</li>
+          <li>左边选单点 <strong>Workers &amp; Pages</strong> → <strong>Create</strong> → <strong>Create Worker</strong>，随便取个名字，比如 <em>places-proxy</em>，按 Deploy。</li>
+          <li>部署完点 <strong>Edit code</strong>，把编辑器里原本的内容全部删掉，换成下面这段代码：
+            <pre style="background:#fff;border:1px solid var(--line-strong);padding:10px;overflow-x:auto;font-size:12px;line-height:1.5;">export default {
+  async fetch(request) {
+    const cors = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    };
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers: cors });
+    }
+    try {
+      const { apiKey, fieldMask, ...placesBody } = await request.json();
+      const upstream = await fetch(
+        "https://places.googleapis.com/v1/places:textSearch",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Goog-Api-Key": apiKey,
+            "X-Goog-FieldMask": fieldMask
+          },
+          body: JSON.stringify(placesBody)
+        }
+      );
+      const text = await upstream.text();
+      return new Response(text, {
+        status: upstream.status,
+        headers: { ...cors, "Content-Type": "application/json" }
+      });
+    } catch (e) {
+      return new Response(JSON.stringify({ error: String(e) }), {
+        status: 500,
+        headers: { ...cors, "Content-Type": "application/json" }
+      });
+    }
+  }
+};</pre>
+          </li>
+          <li>按右上角 <strong>Deploy</strong>（或 Save and Deploy）。部署完会给你一个网址，长得像 <code>https://places-proxy.你的用户名.workers.dev</code>。</li>
+          <li>把这个网址复制，贴到上面的"中转站网址"输入框，按"保存中转站网址"。</li>
         </ol>
       </div>
     </details>
@@ -357,6 +415,7 @@
   const $ = (id) => document.getElementById(id);
   const apiKeyInput = $("apiKey");
   const keyStatus = $("keyStatus");
+  const proxyUrlInput = $("proxyUrl");
   const regionInput = $("regionInput");
   const customKeyword = $("customKeyword");
   const multiLang = $("multiLang");
@@ -385,6 +444,13 @@
   $("saveKeyBtn").addEventListener("click", () => {
     localStorage.setItem("industrialSearchApiKey", apiKeyInput.value.trim());
     keyStatus.textContent = "已保存到本机浏览器。";
+  });
+
+  const savedProxy = localStorage.getItem("industrialSearchProxyUrl");
+  if (savedProxy) proxyUrlInput.value = savedProxy;
+  $("saveProxyBtn").addEventListener("click", () => {
+    localStorage.setItem("industrialSearchProxyUrl", proxyUrlInput.value.trim());
+    alert("中转站网址已保存。");
   });
 
   // ---- category chips ----
@@ -450,18 +516,20 @@
     logBox.scrollTop = logBox.scrollHeight;
   }
 
-  // ---- Places API call ----
+  // ---- Places API call (via proxy — Google Places API (New) does not allow direct browser CORS calls) ----
   async function callTextSearch(query, pageToken){
     const key = apiKeyInput.value.trim();
-    const body = { textQuery: query, regionCode: "MY", languageCode: "zh-CN", pageSize: 20 };
+    const proxy = proxyUrlInput.value.trim();
+    if (!proxy) throw new Error("还没设定中转站网址，请看上面的 Cloudflare Worker 指南");
+    const body = {
+      apiKey: key,
+      fieldMask: withContact.checked ? FULL_FIELDS : BASIC_FIELDS,
+      textQuery: query, regionCode: "MY", languageCode: "zh-CN", pageSize: 20
+    };
     if (pageToken) body.pageToken = pageToken;
-    const res = await fetch("https://places.googleapis.com/v1/places:textSearch", {
+    const res = await fetch(proxy, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Goog-Api-Key": key,
-        "X-Goog-FieldMask": withContact.checked ? FULL_FIELDS : BASIC_FIELDS
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     });
     const data = await res.json().catch(() => ({}));
@@ -556,6 +624,10 @@
   searchBtn.addEventListener("click", async () => {
     if (!apiKeyInput.value.trim()){
       alert("请先填入并保存 Google Places API 金钥。");
+      return;
+    }
+    if (!proxyUrlInput.value.trim()){
+      alert("请先按上面的 Cloudflare Worker 指南建一个中转站，并贴上它的网址。");
       return;
     }
     const terms = getAllTerms();
